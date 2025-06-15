@@ -2,9 +2,18 @@ import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
   final String label;
+  final Function(String) onChanged;
   final IconData icon;
+  final String? Function(String?)? validator;
   final EdgeInsetsGeometry? margin;
-  const CustomTextField({super.key, required this.label, required this.icon, this.margin});
+  const CustomTextField({
+    super.key,
+    required this.label,
+    required this.onChanged,
+    required this.icon,
+    this.validator,
+    this.margin,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +27,8 @@ class CustomTextField extends StatelessWidget {
         ),
       ),
       child: TextFormField(
+        onChanged: onChanged,
+        validator: validator,
         decoration: InputDecoration(
           label: Text(label),
           border: InputBorder.none,

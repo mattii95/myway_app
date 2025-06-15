@@ -1,101 +1,143 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:myway_app/src/presentation/pages/auth/login/bloc/LoginBloc.dart';
+import 'package:myway_app/src/presentation/pages/auth/login/bloc/LoginEvent.dart';
+import 'package:myway_app/src/presentation/pages/auth/login/bloc/LoginState.dart';
+import 'package:myway_app/src/presentation/utils/BlocFormItem.dart';
 import 'package:myway_app/src/presentation/widgets/widgets.dart';
 
 class LoginContent extends StatelessWidget {
-  const LoginContent({super.key});
+  final LoginState state;
+  const LoginContent({super.key, required this.state});
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Stack(
-      children: [
-        Container(
-          height: size.height,
-          width: size.width,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-                Color.fromARGB(255, 98, 48, 238),
-                Color.fromARGB(255, 74, 47, 146),
-              ],
-            ),
-          ),
-          padding: EdgeInsets.only(left: 12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _textRotated(
-                context,
-                () => Navigator.pushNamed(context, 'login'),
-                'Login',
-                26,
-                FontWeight.bold,
-              ),
-              SizedBox(height: 60),
-              _textRotated(
-                context,
-                () => Navigator.pushNamed(context, 'register'),
-                'Register',
-                23,
-                FontWeight.normal,
-              ),
-              SizedBox(height: size.height * 0.25),
-            ],
-          ),
-        ),
-        // Pantalla login
-        Container(
-          margin: EdgeInsets.only(left: 60, bottom: 40),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-                Color.fromARGB(255, 121, 78, 241),
-                Color.fromARGB(255, 144, 111, 235),
-              ],
-            ),
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(30),
-              bottomLeft: Radius.circular(30),
-            ),
-          ),
-          child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _textTitles('Welcome', 30),
-                  _textTitles('back...', 30),
-                  _imageCar(),
-                  _textTitles('Login', 24),
-                  SizedBox(height: 50),
-                  // Email
-                  CustomTextField(label: 'Email', icon: Icons.email_outlined),
-                  SizedBox(height: 20),
-                  // Password
-                  CustomTextField(
-                    label: 'Password',
-                    icon: Icons.lock_outline_rounded,
-                  ),
-                  CustomButton(
-                    width: size.width,
-                    label: 'Login',
-                    margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-                  ),
-                  SizedBox(height: 20),
-                  _textDontHaveAccount(context),
-                  SizedBox(height: 20),
+    return Form(
+      key: state.formKey,
+      child: Stack(
+        children: [
+          Container(
+            height: size.height,
+            width: size.width,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [
+                  Color.fromARGB(255, 98, 48, 238),
+                  Color.fromARGB(255, 74, 47, 146),
                 ],
               ),
             ),
+            padding: EdgeInsets.only(left: 12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _textRotated(
+                  context,
+                  () => Navigator.pushNamed(context, 'login'),
+                  'Login',
+                  26,
+                  FontWeight.bold,
+                ),
+                SizedBox(height: 60),
+                _textRotated(
+                  context,
+                  () => Navigator.pushNamed(context, 'register'),
+                  'Register',
+                  23,
+                  FontWeight.normal,
+                ),
+                SizedBox(height: size.height * 0.25),
+              ],
+            ),
           ),
-        ),
-      ],
+          // Pantalla login
+          Container(
+            margin: EdgeInsets.only(left: 60, bottom: 40),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [
+                  Color.fromARGB(255, 121, 78, 241),
+                  Color.fromARGB(255, 144, 111, 235),
+                ],
+              ),
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(30),
+                bottomLeft: Radius.circular(30),
+              ),
+            ),
+            child: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _textTitles('Welcome', 30),
+                      _textTitles('back...', 30),
+                      _imageCar(),
+                      _textTitles('Login', 24),
+                      SizedBox(height: 50),
+                      // Email
+                      CustomTextField(
+                        label: 'Email',
+                        icon: Icons.email_outlined,
+                        onChanged: (value) {
+                          context.read<LoginBloc>().add(
+                            EmailChanged(email: BlocFormItem(value: value)),
+                          );
+                        },
+                        validator: (value) {
+                          return state.email.error;
+                        },
+                      ),
+                      SizedBox(height: 20),
+                      // Password
+                      CustomTextField(
+                        label: 'Password',
+                        icon: Icons.lock_outline_rounded,
+                        onChanged: (value) {
+                          context.read<LoginBloc>().add(
+                            PasswordChanged(
+                              password: BlocFormItem(value: value),
+                            ),
+                          );
+                        },
+                        validator: (value) {
+                          return state.password.error;
+                        },
+                      ),
+                      CustomButton(
+                        width: size.width,
+                        label: 'Login',
+                        margin: EdgeInsets.symmetric(
+                          vertical: 20,
+                          horizontal: 10,
+                        ),
+                        onPressed: () {
+                          if (state.formKey!.currentState!.validate()) {
+                            context.read<LoginBloc>().add(FormSubmit());
+                          } else {
+                            print('El formulario no es valido');
+                          }
+                        },
+                      ),
+                      SizedBox(height: 20),
+                      _textDontHaveAccount(context),
+                      SizedBox(height: 20),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
