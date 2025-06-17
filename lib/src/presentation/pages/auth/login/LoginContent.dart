@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:myway_app/src/domain/utils/Resource.dart';
 import 'package:myway_app/src/presentation/pages/auth/login/bloc/LoginBloc.dart';
 import 'package:myway_app/src/presentation/pages/auth/login/bloc/LoginEvent.dart';
 import 'package:myway_app/src/presentation/pages/auth/login/bloc/LoginState.dart';
@@ -13,6 +14,7 @@ class LoginContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final response = state.response;
     return Form(
       key: state.formKey,
       child: Stack(
@@ -112,21 +114,33 @@ class LoginContent extends StatelessWidget {
                           return state.password.error;
                         },
                       ),
-                      CustomButton(
-                        width: size.width,
-                        label: 'Login',
-                        margin: EdgeInsets.symmetric(
-                          vertical: 20,
-                          horizontal: 10,
-                        ),
-                        onPressed: () {
-                          if (state.formKey!.currentState!.validate()) {
-                            context.read<LoginBloc>().add(FormSubmit());
-                          } else {
-                            print('El formulario no es valido');
-                          }
-                        },
-                      ),
+                      (response is LoadingData)
+                          ? Container(
+                            width: size.width,
+                            height: 50,
+                            margin: EdgeInsets.symmetric(
+                              vertical: 20,
+                              horizontal: 10,
+                            ),
+                            child: Center(
+                              child: CircularProgressIndicator(strokeWidth: 2, backgroundColor: Colors.white,),
+                            ),
+                          )
+                          : CustomButton(
+                            width: size.width,
+                            label: 'Login',
+                            margin: EdgeInsets.symmetric(
+                              vertical: 20,
+                              horizontal: 10,
+                            ),
+                            onPressed: () {
+                              if (state.formKey!.currentState!.validate()) {
+                                context.read<LoginBloc>().add(FormSubmit());
+                              } else {
+                                print('El formulario no es valido');
+                              }
+                            },
+                          ),
                       SizedBox(height: 20),
                       _textDontHaveAccount(context),
                       SizedBox(height: 20),

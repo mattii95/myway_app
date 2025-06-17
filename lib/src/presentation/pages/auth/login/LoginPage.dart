@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:myway_app/src/domain/utils/Resource.dart';
 import 'package:myway_app/src/presentation/pages/auth/login/LoginContent.dart';
 import 'package:myway_app/src/presentation/pages/auth/login/bloc/LoginBloc.dart';
 import 'package:myway_app/src/presentation/pages/auth/login/bloc/LoginState.dart';
@@ -16,10 +17,20 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: const Color.fromARGB(255, 126, 98, 202),
-      body: BlocBuilder<LoginBloc, LoginState>(
-        builder: (context, state) {
-          return LoginContent(state: state);
+      body: BlocListener<LoginBloc, LoginState>(
+        listener: (context, state) {
+          final response = state.response;
+          if (response is ErrorData) {
+            print('Error data: ${response.message}');
+          } else if (response is Success) {
+            print('Success data: ${response.data}');
+          }
         },
+        child: BlocBuilder<LoginBloc, LoginState>(
+          builder: (context, state) {
+            return LoginContent(state: state);
+          },
+        ),
       ),
     );
   }

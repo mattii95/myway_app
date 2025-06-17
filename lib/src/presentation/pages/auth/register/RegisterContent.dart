@@ -35,7 +35,7 @@ class RegisterContent extends StatelessWidget {
               children: [
                 _textRotated(
                   context,
-                  () => Navigator.pushNamed(context, 'login'),
+                  () => Navigator.pop(context, 'login'),
                   'Login',
                   26,
                   FontWeight.normal,
@@ -43,7 +43,7 @@ class RegisterContent extends StatelessWidget {
                 SizedBox(height: 60),
                 _textRotated(
                   context,
-                  () => Navigator.pushNamed(context, 'register'),
+                  () => Navigator.pop(context, 'register'),
                   'Register',
                   23,
                   FontWeight.bold,
@@ -213,7 +213,7 @@ class RegisterContent extends StatelessWidget {
         SizedBox(width: 5),
         GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, 'login');
+            Navigator.pop(context, 'login');
           },
           child: Text(
             'Inicia Sesión',
