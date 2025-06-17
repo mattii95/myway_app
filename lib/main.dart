@@ -3,9 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:myway_app/blocProviders.dart';
 import 'package:myway_app/src/presentation/pages/auth/login/LoginPage.dart';
 import 'package:myway_app/src/presentation/pages/auth/register/RegisterPage.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
 

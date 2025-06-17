@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 class ApiConfig {
-  static const String API_HOST = '192.168.1.120:4000';
+  static String API_HOST = dotenv.get('API_HOST');
 }
