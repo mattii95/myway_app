@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:myway_app/src/data/datasource/remote/services/AuthService.dart';
+import 'package:myway_app/src/domain/use-cases/auth/AuthUseCases.dart';
 import 'package:myway_app/src/domain/utils/Resource.dart';
 import 'package:myway_app/src/presentation/pages/auth/login/bloc/LoginEvent.dart';
 import 'package:myway_app/src/presentation/pages/auth/login/bloc/LoginState.dart';
 import 'package:myway_app/src/presentation/utils/BlocFormItem.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
+  AuthUseCases authUseCases;
   final formKey = GlobalKey<FormState>();
-  AuthService authService = AuthService();
 
-  LoginBloc() : super(LoginState()) {
+  LoginBloc(this.authUseCases) : super(LoginState()) {
     on<LoginInitEvent>((event, emit) {
       emit(state.copyWith(formKey: formKey));
     });
@@ -42,7 +42,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     on<FormSubmit>((event, emit) async {
       emit(state.copyWith(response: LoadingData(), formKey: formKey));
-      Resource response = await authService.login(
+      Resource response = await authUseCases.loginUseCase.run(
         state.email.value,
         state.password.value,
       );
