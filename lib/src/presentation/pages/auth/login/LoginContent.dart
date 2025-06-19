@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:myway_app/src/domain/utils/Resource.dart';
 import 'package:myway_app/src/presentation/pages/auth/login/bloc/LoginBloc.dart';
 import 'package:myway_app/src/presentation/pages/auth/login/bloc/LoginEvent.dart';
@@ -39,7 +40,7 @@ class LoginContent extends StatelessWidget {
               children: [
                 _textRotated(
                   context,
-                  () => Navigator.pushNamed(context, 'login'),
+                  () => context.push('/login'),
                   'Login',
                   26,
                   FontWeight.bold,
@@ -47,7 +48,7 @@ class LoginContent extends StatelessWidget {
                 SizedBox(height: 60),
                 _textRotated(
                   context,
-                  () => Navigator.pushNamed(context, 'register'),
+                  () => context.push('/register'),
                   'Register',
                   23,
                   FontWeight.normal,
@@ -162,9 +163,7 @@ class LoginContent extends StatelessWidget {
         Text('No tienes cuenta?', style: TextStyle(color: Colors.grey[100])),
         SizedBox(width: 5),
         GestureDetector(
-          onTap: () {
-            Navigator.pushNamed(context, 'register');
-          },
+          onTap: () => context.push('/register'),
           child: Text(
             'Registrate',
             style: TextStyle(

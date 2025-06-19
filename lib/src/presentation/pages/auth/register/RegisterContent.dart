@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:myway_app/src/presentation/pages/auth/register/bloc/register_bloc.dart';
 import 'package:myway_app/src/presentation/utils/BlocFormItem.dart';
 import 'package:myway_app/src/presentation/widgets/widgets.dart';
@@ -35,7 +36,7 @@ class RegisterContent extends StatelessWidget {
               children: [
                 _textRotated(
                   context,
-                  () => Navigator.pop(context, 'login'),
+                  () => context.go('/login'),
                   'Login',
                   26,
                   FontWeight.normal,
@@ -43,7 +44,7 @@ class RegisterContent extends StatelessWidget {
                 SizedBox(height: 60),
                 _textRotated(
                   context,
-                  () => Navigator.pop(context, 'register'),
+                  () =>context.go('/register'),
                   'Register',
                   23,
                   FontWeight.bold,
@@ -213,7 +214,7 @@ class RegisterContent extends StatelessWidget {
         SizedBox(width: 5),
         GestureDetector(
           onTap: () {
-            Navigator.pop(context, 'login');
+            context.go('/login');
           },
           child: Text(
             'Inicia Sesión',
