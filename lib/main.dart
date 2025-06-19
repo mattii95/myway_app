@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:myway_app/injection.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:myway_app/src/presentation/routes/AppRouter.dart';
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      builder: FToastBuilder(),
       debugShowCheckedModeBanner: false,
       title: 'MyWay',
       theme: ThemeData(
