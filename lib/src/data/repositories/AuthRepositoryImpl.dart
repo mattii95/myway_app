@@ -1,5 +1,6 @@
 import 'package:myway_app/src/data/datasources/remote/services/AuthService.dart';
 import 'package:myway_app/src/domain/models/AuthResponse.dart';
+import 'package:myway_app/src/domain/models/User.dart';
 import 'package:myway_app/src/domain/repositories/AuthRepository.dart';
 import 'package:myway_app/src/domain/utils/Resource.dart';
 
@@ -11,5 +12,10 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Resource<AuthResponse>> login(String email, String password) {
     return authService.login(email, password);
+  }
+
+  @override
+  Future<Resource<AuthResponse>> register(User user) {
+    return authService.register(user);
   }
 }

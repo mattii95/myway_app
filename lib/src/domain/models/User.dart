@@ -1,28 +1,32 @@
 import 'package:myway_app/src/domain/models/Role.dart';
 
 class User {
-  int id;
+  int? id;
   String name;
   String surname;
   String phone;
   String email;
-  dynamic urlImage;
-  dynamic notificationToken;
-  DateTime createdAt;
-  DateTime updatedAt;
-  List<Role> roles;
+  String? password;
+  String? urlImage;
+  String? notificationToken;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  List<Role>? roles;
+  List<String>? rolesTypes;
 
   User({
-    required this.id,
+    this.id,
     required this.name,
     required this.surname,
     required this.phone,
     required this.email,
-    required this.urlImage,
-    required this.notificationToken,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.roles,
+    this.password,
+    this.urlImage,
+    this.notificationToken,
+    this.createdAt,
+    this.updatedAt,
+    this.roles,
+    this.rolesTypes,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => User(
@@ -31,11 +35,13 @@ class User {
     surname: json["surname"],
     phone: json["phone"],
     email: json["email"],
+    password: json["password"],
     urlImage: json["urlImage"],
     notificationToken: json["notificationToken"],
     createdAt: DateTime.parse(json["createdAt"]),
     updatedAt: DateTime.parse(json["updatedAt"]),
     roles: List<Role>.from(json["roles"].map((x) => Role.fromJson(x))),
+    rolesTypes: List<String>.from(json["rolesTypes"].map((x) => x)),
   );
 
   Map<String, dynamic> toJson() => {
@@ -44,10 +50,12 @@ class User {
     "surname": surname,
     "phone": phone,
     "email": email,
+    "password": password,
     "urlImage": urlImage,
     "notificationToken": notificationToken,
-    "createdAt": createdAt.toIso8601String(),
-    "updatedAt": updatedAt.toIso8601String(),
-    "roles": List<dynamic>.from(roles.map((x) => x.toJson())),
+    "roles":
+        roles != null ? List<dynamic>.from(roles!.map((x) => x.toJson())) : [],
+    "rolesTypes":
+        rolesTypes != null ? List<dynamic>.from(rolesTypes!.map((x) => x)) : [],
   };
 }

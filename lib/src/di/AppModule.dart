@@ -4,6 +4,7 @@ import 'package:myway_app/src/data/repositories/AuthRepositoryImpl.dart';
 import 'package:myway_app/src/domain/repositories/AuthRepository.dart';
 import 'package:myway_app/src/domain/use-cases/auth/AuthUseCases.dart';
 import 'package:myway_app/src/domain/use-cases/auth/LoginUseCase.dart';
+import 'package:myway_app/src/domain/use-cases/auth/RegisterUseCase.dart';
 
 @module
 abstract class AppModule {
@@ -14,5 +15,8 @@ abstract class AppModule {
   AuthRepository get authRepository => AuthRepositoryImpl(authService);
 
   @Injectable()
-  AuthUseCases get authUseCases => AuthUseCases(loginUseCase: LoginUseCase(authRepository));
+  AuthUseCases get authUseCases => AuthUseCases(
+    loginUseCase: LoginUseCase(authRepository),
+    registerUseCase: RegisterUseCase(authRepository),
+  );
 }

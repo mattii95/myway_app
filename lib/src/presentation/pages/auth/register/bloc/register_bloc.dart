@@ -1,14 +1,19 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:myway_app/src/domain/models/User.dart';
+import 'package:myway_app/src/domain/use-cases/auth/AuthUseCases.dart';
+import 'package:myway_app/src/domain/utils/Resource.dart';
 import 'package:myway_app/src/presentation/utils/BlocFormItem.dart';
 
 part 'register_event.dart';
 part 'register_state.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
+  final AuthUseCases authUseCases;
   final formKey = GlobalKey<FormState>();
-  RegisterBloc() : super(RegisterInitial()) {
+
+  RegisterBloc(this.authUseCases) : super(RegisterInitial()) {
     on<RegisterInitialEvent>(_registerInitialEvent);
     on<NameChanged>(_handleNameChanged);
     on<SurnameChanged>(_handleSurnameChanged);
@@ -117,7 +122,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     );
   }
 
-  _handleFormSubmit(FormSubmit event, Emitter<RegisterState> emit) {
+  _handleFormSubmit(FormSubmit event, Emitter<RegisterState> emit) async {
     final msg = '''
       - Name: ${state.name.value}
       - Surname: ${state.surname.value}
@@ -127,6 +132,12 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       - Repeat Password: ${state.repeatPassword.value}
     ''';
     print(msg);
+
+    emit(state.copyWith(response: LoadingData(), formKey: formKey));
+
+    Resource response = await authUseCases.registerUseCase.run(state.toUser());
+
+    emit(state.copyWith(response: response, formKey: formKey));
   }
 
   _handleFormReset(FormReset event, Emitter<RegisterState> emit) {

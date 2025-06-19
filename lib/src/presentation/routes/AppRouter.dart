@@ -28,7 +28,7 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) {
         return BlocProvider<RegisterBloc>(
           create:
-              (_) => RegisterBloc()..add(RegisterInitialEvent()),
+              (_) => RegisterBloc(locator<AuthUseCases>())..add(RegisterInitialEvent()),
           child: RegisterPage(),
         );
       },
