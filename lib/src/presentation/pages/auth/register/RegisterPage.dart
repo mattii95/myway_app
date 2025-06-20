@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:go_router/go_router.dart';
 import 'package:myway_app/src/domain/utils/Resource.dart';
 import 'package:myway_app/src/presentation/pages/auth/register/RegisterContent.dart';
 import 'package:myway_app/src/presentation/pages/auth/register/bloc/register_bloc.dart';
@@ -28,6 +29,7 @@ class _RegisterPageState extends State<RegisterPage> {
           }
           if (response is Success) {
             context.read<RegisterBloc>().add(FormReset());
+            context.go('/login');
           }
         },
         child: BlocBuilder<RegisterBloc, RegisterState>(

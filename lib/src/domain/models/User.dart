@@ -38,10 +38,7 @@ class User {
     password: json["password"],
     urlImage: json["urlImage"],
     notificationToken: json["notificationToken"],
-    createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: DateTime.parse(json["updatedAt"]),
     roles: List<Role>.from(json["roles"].map((x) => Role.fromJson(x))),
-    rolesTypes: List<String>.from(json["rolesTypes"].map((x) => x)),
   );
 
   Map<String, dynamic> toJson() => {

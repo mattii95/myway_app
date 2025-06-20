@@ -1,3 +1,4 @@
+import 'package:myway_app/src/domain/models/AuthResponse.dart';
 import 'package:myway_app/src/presentation/utils/BlocFormItem.dart';
 
 abstract class LoginEvent {}
@@ -15,3 +16,8 @@ class PasswordChanged extends LoginEvent {
 }
 
 class FormSubmit extends LoginEvent {}
+
+class SaveUserSession extends LoginEvent {
+  final AuthResponse authResponse;
+  SaveUserSession({required this.authResponse});
+}
