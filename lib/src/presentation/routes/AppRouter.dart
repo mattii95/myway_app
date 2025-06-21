@@ -59,7 +59,7 @@ final GoRouter appRouter = GoRouter(
     ShellRoute(
       builder: (context, state, child) {
         return BlocProvider<ClientHomeBloc>(
-          create: (_) => ClientHomeBloc(),
+          create: (_) => ClientHomeBloc(locator<AuthUseCases>()),
           child: ClientHomePage(childView: child),
         );
       },

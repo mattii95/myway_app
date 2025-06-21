@@ -6,6 +6,7 @@ import 'package:myway_app/src/domain/repositories/AuthRepository.dart';
 import 'package:myway_app/src/domain/use-cases/auth/AuthUseCases.dart';
 import 'package:myway_app/src/domain/use-cases/auth/GetUserSessionUseCase.dart';
 import 'package:myway_app/src/domain/use-cases/auth/LoginUseCase.dart';
+import 'package:myway_app/src/domain/use-cases/auth/LogoutUseCase.dart';
 import 'package:myway_app/src/domain/use-cases/auth/RegisterUseCase.dart';
 import 'package:myway_app/src/domain/use-cases/auth/SaveUserSessionUseCase.dart';
 
@@ -26,6 +27,7 @@ abstract class AppModule {
     loginUseCase: LoginUseCase(authRepository),
     registerUseCase: RegisterUseCase(authRepository),
     saveUserSessionUseCase: SaveUserSessionUseCase(authRepository),
-    getUserSessionUseCase: GetUserSessionUseCase(authRepository)
+    getUserSessionUseCase: GetUserSessionUseCase(authRepository),
+    logoutUseCase: LogoutUseCase(authRepository),
   );
 }

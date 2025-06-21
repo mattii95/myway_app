@@ -6,6 +6,7 @@ import 'package:myway_app/src/domain/repositories/AuthRepository.dart';
 import 'package:myway_app/src/domain/utils/Resource.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
+  
   AuthService authService;
   SharedPref sharedPref;
 
@@ -34,5 +35,10 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<void> saveUserSession(AuthResponse authResponse) async {
     await sharedPref.save('user', authResponse.toJson());
+  }
+  
+  @override
+  Future<bool> logout() async {
+    return await sharedPref.remove('user');
   }
 }

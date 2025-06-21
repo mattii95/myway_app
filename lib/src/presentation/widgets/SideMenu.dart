@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:myway_app/src/presentation/pages/client/home/bloc/client_home_bloc.dart';
 import 'package:myway_app/src/presentation/utils/MenuItems.dart';
 
 class SideMenu extends StatefulWidget {
@@ -24,8 +26,14 @@ class _SideMenuState extends State<SideMenu> {
       selectedIndex: navDrawerIndex,
       onDestinationSelected: (value) {
         navDrawerIndex = value;
-        final menuItem = widget.menuItems[value];
-        context.push(menuItem.link);
+        final isValidIndex = value >= 0 && value < widget.menuItems.length;
+        if (isValidIndex) {
+          final menuItem = widget.menuItems[value];
+          context.push(menuItem.link);
+        } else {
+          context.read<ClientHomeBloc>().add(Logout());
+          context.go('/login');
+        }
         widget.scaffoldKey.currentState?.closeDrawer();
       },
       children: [
@@ -35,6 +43,10 @@ class _SideMenuState extends State<SideMenu> {
             icon: Icon(item.icon),
             label: Text(item.title),
           ),
+        ),
+        NavigationDrawerDestination(
+          icon: Icon(Icons.logout_outlined),
+          label: Text('Cerrar Sesion'),
         ),
       ],
     );
