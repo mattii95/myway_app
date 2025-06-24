@@ -1,17 +1,17 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:myway_app/injection.dart';
-import 'package:myway_app/src/domain/use-cases/auth/AuthUseCases.dart';
-import 'package:myway_app/src/presentation/pages/auth/login/LoginPage.dart';
-import 'package:myway_app/src/presentation/pages/auth/login/bloc/LoginBloc.dart';
-import 'package:myway_app/src/presentation/pages/auth/login/bloc/LoginEvent.dart';
-import 'package:myway_app/src/presentation/pages/auth/register/RegisterPage.dart';
+import 'package:myway_app/src/domain/use-cases/auth/auth_use_case.dart';
+import 'package:myway_app/src/presentation/pages/auth/login/login_page.dart';
+import 'package:myway_app/src/presentation/pages/auth/login/bloc/login_bloc.dart';
+import 'package:myway_app/src/presentation/pages/auth/login/bloc/login_event.dart';
+import 'package:myway_app/src/presentation/pages/auth/register/register_page.dart';
 import 'package:myway_app/src/presentation/pages/auth/register/bloc/register_bloc.dart';
-import 'package:myway_app/src/presentation/pages/client/home/ClientHomePage.dart';
+import 'package:myway_app/src/presentation/pages/client/home/client_home_page.dart';
 import 'package:myway_app/src/presentation/pages/client/home/bloc/client_home_bloc.dart';
-import 'package:myway_app/src/presentation/pages/profile/info/ProfileInfoPage.dart';
-import 'package:myway_app/src/presentation/pages/splash/SplashPage.dart';
-import 'package:myway_app/src/presentation/views/home/ClientHomeView.dart';
+import 'package:myway_app/src/presentation/pages/profile/info/profile_info_page.dart';
+import 'package:myway_app/src/presentation/pages/splash/splash_page.dart';
+import 'package:myway_app/src/presentation/views/home/client_home_view.dart';
 
 final GoRouter appRouter = GoRouter(
   initialLocation: '/splash',

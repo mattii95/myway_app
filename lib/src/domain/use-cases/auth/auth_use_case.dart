@@ -1,8 +1,8 @@
-import 'package:myway_app/src/domain/use-cases/auth/GetUserSessionUseCase.dart';
-import 'package:myway_app/src/domain/use-cases/auth/LoginUseCase.dart';
-import 'package:myway_app/src/domain/use-cases/auth/LogoutUseCase.dart';
-import 'package:myway_app/src/domain/use-cases/auth/RegisterUseCase.dart';
-import 'package:myway_app/src/domain/use-cases/auth/SaveUserSessionUseCase.dart';
+import 'package:myway_app/src/domain/use-cases/auth/get_user_session_use_case.dart';
+import 'package:myway_app/src/domain/use-cases/auth/login_use_case.dart';
+import 'package:myway_app/src/domain/use-cases/auth/logout_use_case.dart';
+import 'package:myway_app/src/domain/use-cases/auth/register_use_case.dart';
+import 'package:myway_app/src/domain/use-cases/auth/save_user_session_use_case.dart';
 
 class AuthUseCases {
   LoginUseCase loginUseCase;

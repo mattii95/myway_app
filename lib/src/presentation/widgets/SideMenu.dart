@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:myway_app/src/presentation/pages/client/home/bloc/client_home_bloc.dart';
-import 'package:myway_app/src/presentation/utils/MenuItems.dart';
+import 'package:myway_app/src/presentation/utils/menu_items.dart';
 
 class SideMenu extends StatefulWidget {
   final List<MenuItem> menuItems;

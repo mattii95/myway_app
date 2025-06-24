@@ -1,5 +1,5 @@
-import 'package:myway_app/src/domain/models/AuthResponse.dart';
-import 'package:myway_app/src/domain/repositories/AuthRepository.dart';
+import 'package:myway_app/src/domain/models/auth_response.dart';
+import 'package:myway_app/src/domain/repositories/auth_repository.dart';
 
 class SaveUserSessionUseCase {
   AuthRepository authRepository;

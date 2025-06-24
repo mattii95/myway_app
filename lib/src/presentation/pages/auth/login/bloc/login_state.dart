@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:myway_app/src/domain/utils/Resource.dart';
-import 'package:myway_app/src/presentation/utils/BlocFormItem.dart';
+import 'package:myway_app/src/domain/utils/resource.dart';
+import 'package:myway_app/src/presentation/utils/bloc_form_item.dart';
 
 class LoginState extends Equatable {
   final BlocFormItem email;

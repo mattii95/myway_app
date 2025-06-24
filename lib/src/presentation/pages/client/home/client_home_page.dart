@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:myway_app/src/presentation/pages/client/home/bloc/client_home_bloc.dart';
-import 'package:myway_app/src/presentation/utils/MenuItems.dart';
-import 'package:myway_app/src/presentation/widgets/SideMenu.dart';
+import 'package:myway_app/src/presentation/utils/menu_items.dart';
+import 'package:myway_app/src/presentation/widgets/sidemenu.dart';
 
 class ClientHomePage extends StatefulWidget {
   final Widget childView;

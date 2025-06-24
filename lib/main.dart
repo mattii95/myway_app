@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:myway_app/injection.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:myway_app/src/presentation/routes/AppRouter.dart';
+import 'package:myway_app/src/presentation/routes/app_router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

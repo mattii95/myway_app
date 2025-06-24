@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
-import 'package:myway_app/src/domain/models/AuthResponse.dart';
-import 'package:myway_app/src/domain/utils/Resource.dart';
-import 'package:myway_app/src/presentation/pages/auth/login/LoginContent.dart';
-import 'package:myway_app/src/presentation/pages/auth/login/bloc/LoginBloc.dart';
-import 'package:myway_app/src/presentation/pages/auth/login/bloc/LoginEvent.dart';
-import 'package:myway_app/src/presentation/pages/auth/login/bloc/LoginState.dart';
+import 'package:myway_app/src/domain/models/auth_response.dart';
+import 'package:myway_app/src/domain/utils/resource.dart';
+import 'package:myway_app/src/presentation/pages/auth/login/login_content.dart';
+import 'package:myway_app/src/presentation/pages/auth/login/bloc/login_bloc.dart';
+import 'package:myway_app/src/presentation/pages/auth/login/bloc/login_event.dart';
+import 'package:myway_app/src/presentation/pages/auth/login/bloc/login_state.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

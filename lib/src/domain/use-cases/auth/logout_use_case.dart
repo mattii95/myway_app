@@ -1,4 +1,4 @@
-import 'package:myway_app/src/domain/repositories/AuthRepository.dart';
+import 'package:myway_app/src/domain/repositories/auth_repository.dart';
 
 class LogoutUseCase {
   AuthRepository authRepository;

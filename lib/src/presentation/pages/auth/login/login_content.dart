@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:myway_app/src/domain/utils/Resource.dart';
-import 'package:myway_app/src/presentation/pages/auth/login/bloc/LoginBloc.dart';
-import 'package:myway_app/src/presentation/pages/auth/login/bloc/LoginEvent.dart';
-import 'package:myway_app/src/presentation/pages/auth/login/bloc/LoginState.dart';
-import 'package:myway_app/src/presentation/utils/BlocFormItem.dart';
+import 'package:myway_app/src/domain/utils/resource.dart';
+import 'package:myway_app/src/presentation/pages/auth/login/bloc/login_bloc.dart';
+import 'package:myway_app/src/presentation/pages/auth/login/bloc/login_event.dart';
+import 'package:myway_app/src/presentation/pages/auth/login/bloc/login_state.dart';
+import 'package:myway_app/src/presentation/utils/bloc_form_item.dart';
 import 'package:myway_app/src/presentation/widgets/widgets.dart';
 
 class LoginContent extends StatelessWidget {

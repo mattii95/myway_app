@@ -1,5 +1,5 @@
-import 'package:myway_app/src/domain/models/AuthResponse.dart';
-import 'package:myway_app/src/presentation/utils/BlocFormItem.dart';
+import 'package:myway_app/src/domain/models/auth_response.dart';
+import 'package:myway_app/src/presentation/utils/bloc_form_item.dart';
 
 abstract class LoginEvent {}
 

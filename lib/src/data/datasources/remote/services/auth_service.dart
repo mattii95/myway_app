@@ -1,16 +1,16 @@
 import 'dart:convert';
 
-import 'package:myway_app/src/data/api/ApiConfig.dart';
+import 'package:myway_app/src/data/api/api_config.dart';
 import 'package:http/http.dart' as http;
-import 'package:myway_app/src/domain/models/AuthResponse.dart';
-import 'package:myway_app/src/domain/models/User.dart';
-import 'package:myway_app/src/domain/utils/ListToString.dart';
-import 'package:myway_app/src/domain/utils/Resource.dart';
+import 'package:myway_app/src/domain/models/auth_response.dart';
+import 'package:myway_app/src/domain/models/user.dart';
+import 'package:myway_app/src/domain/utils/listo_to_string.dart';
+import 'package:myway_app/src/domain/utils/resource.dart';
 
 class AuthService {
   Future<Resource<AuthResponse>> login(String email, String password) async {
     try {
-      Uri url = Uri.http(ApiConfig.API_HOST, '/api/auth/login');
+      Uri url = Uri.http(ApiConfig.apiHost, '/api/auth/login');
       Map<String, String> headers = {'Content-Type': 'application/json'};
 
       String body = json.encode({'email': email, 'password': password});
@@ -32,7 +32,7 @@ class AuthService {
   
   Future<Resource<AuthResponse>> register(User user) async {
     try {
-      Uri url = Uri.http(ApiConfig.API_HOST, '/api/auth/register');
+      Uri url = Uri.http(ApiConfig.apiHost, '/api/auth/register');
       Map<String, String> headers = {'Content-Type': 'application/json'};
 
       String body = json.encode({

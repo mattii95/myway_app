@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:myway_app/src/presentation/pages/auth/register/bloc/register_bloc.dart';
-import 'package:myway_app/src/presentation/utils/BlocFormItem.dart';
+import 'package:myway_app/src/presentation/utils/bloc_form_item.dart';
 import 'package:myway_app/src/presentation/widgets/widgets.dart';
 
 class RegisterContent extends StatelessWidget {

@@ -1,6 +1,6 @@
-import 'package:myway_app/src/domain/models/AuthResponse.dart';
-import 'package:myway_app/src/domain/models/User.dart';
-import 'package:myway_app/src/domain/utils/Resource.dart';
+import 'package:myway_app/src/domain/models/auth_response.dart';
+import 'package:myway_app/src/domain/models/user.dart';
+import 'package:myway_app/src/domain/utils/resource.dart';
 
 abstract class AuthRepository {
   Future<Resource<AuthResponse>> login(String email, String password);

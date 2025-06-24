@@ -1,9 +1,9 @@
-import 'package:myway_app/src/data/datasources/local/SharedPref.dart';
-import 'package:myway_app/src/data/datasources/remote/services/AuthService.dart';
-import 'package:myway_app/src/domain/models/AuthResponse.dart';
-import 'package:myway_app/src/domain/models/User.dart';
-import 'package:myway_app/src/domain/repositories/AuthRepository.dart';
-import 'package:myway_app/src/domain/utils/Resource.dart';
+import 'package:myway_app/src/data/datasources/local/shared_pref.dart';
+import 'package:myway_app/src/data/datasources/remote/services/auth_service.dart';
+import 'package:myway_app/src/domain/models/auth_response.dart';
+import 'package:myway_app/src/domain/models/user.dart';
+import 'package:myway_app/src/domain/repositories/auth_repository.dart';
+import 'package:myway_app/src/domain/utils/resource.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   
