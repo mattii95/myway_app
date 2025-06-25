@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:myway_app/src/domain/models/user.dart';
+import 'package:myway_app/src/presentation/widgets/custom_icon_back.dart';
+import 'package:myway_app/src/presentation/widgets/widgets.dart';
 
-class ProfileInfoView extends StatelessWidget {
-  final User? user;
-  const ProfileInfoView({super.key, this.user});
+class ProfileUpdateView extends StatelessWidget {
+  const ProfileUpdateView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +14,25 @@ class ProfileInfoView extends StatelessWidget {
           children: [
             _headerProfile(size),
             Spacer(),
-            _actionProfile('Editar Perfil', Icons.edit, () => context.push('/profile/update')),
-            _actionProfile('Cerrar Sesión', Icons.settings_power_outlined, null),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+              child: ElevatedButton.icon(
+                onPressed: () {},
+                label: Text('Guardar Cambios'),
+                icon: Icon(Icons.save_as_outlined),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.deepPurple,
+                  foregroundColor: Colors.white,
+                  iconColor: Colors.white,
+                  elevation: 1,
+                ),
+              ),
+            ),
             SizedBox(height: 35),
           ],
         ),
         _cardUserInfo(size),
+        CustomIconBack(margin: EdgeInsets.all(10),),
       ],
     );
   }
@@ -29,7 +41,7 @@ class ProfileInfoView extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(left: 20, right: 20, top: 90),
       width: size.width,
-      height: 260,
+      height: size.height * 0.5,
       child: Card(
         color: Colors.white,
         child: Column(
@@ -51,33 +63,25 @@ class ProfileInfoView extends StatelessWidget {
                 ),
               ),
             ),
-            Text(
-              '${user?.name}${user?.surname}',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+            CustomTextFieldOutline(
+              label: 'Nombre',
+              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+              onChanged: (p0) {},
+              icon: Icons.person_outline,
             ),
-            Text(user?.email ?? '', style: TextStyle(color: Colors.grey[700])),
-            Text(user?.phone ?? '', style: TextStyle(color: Colors.grey[700])),
+            CustomTextFieldOutline(
+              label: 'Apellido',
+              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+              onChanged: (p0) {},
+              icon: Icons.person_outline,
+            ),
+            CustomTextFieldOutline(
+              label: 'Email',
+              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+              onChanged: (p0) {},
+              icon: Icons.email_outlined,
+            ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _actionProfile(String optionName, IconData icon, Function()? onTap) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-        child: ListTile(
-          title: Text(optionName, style: TextStyle(fontWeight: FontWeight.bold)),
-          leading: Container(
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: Colors.deepPurpleAccent,
-              borderRadius: BorderRadius.all(Radius.circular(100)),
-            ),
-            child: Icon(icon, color: Colors.white),
-          ),
         ),
       ),
     );
@@ -100,7 +104,7 @@ class ProfileInfoView extends StatelessWidget {
         ),
       ),
       child: Text(
-        'Perfil de Usuario',
+        'Actualizar Perfil',
         style: TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
